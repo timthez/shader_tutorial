@@ -1,6 +1,6 @@
 #Position window in a specific location each time
-WindowX=2000
-WindowY=0
+WindowX=-1
+WindowY=-1
 
 SOURCE=./src/*
 
