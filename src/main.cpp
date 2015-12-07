@@ -57,6 +57,13 @@ void createShaders(){
     program->attachShader(vertex);
     program->attachShader(fragment);
     
+    //Link attribute name with location or you can do it in the shader 
+    // This code must happen each time program links!!!
+    // positionLocation = 0;
+    // colorLocation = 1;
+    glBindAttribLocation(program->getID(), 0,"VertexPosition");
+    glBindAttribLocation(program->getID(), 1,"VertexColor");
+    
     program->link();
     program->use();
     
@@ -93,11 +100,10 @@ void createAttributes(float  positionData[],int sizePos, float  colorData[], int
     glGenVertexArrays(1,&vao);
     glBindVertexArray(vao);
     
-    //Link attribute name with location or you can do it in the shader
+    //Attribute Location Identifiers
     GLuint positionLocation = 0;
     GLuint colorLocation = 1;
-    glBindAttribLocation(program->getID(), positionLocation,"VertexPosition");
-    glBindAttribLocation(program->getID(), colorLocation,"VertexColor");
+    
     
     //Make location an array type
     glEnableVertexAttribArray(positionLocation);
@@ -342,15 +348,6 @@ int main(int argc, char **argv)
     createShaders();
     
     triangleSetup();
-    
-    //Link after Compilation and VBO and VAO are created
-    program->link();
-    program->use();
-    
-    if(Logger::show){
-        program->printActiveAttribs();
-        program->printActiveUniforms();
-    }
     
     //Hide things that are behind others
     glEnable(GL_DEPTH_TEST);
