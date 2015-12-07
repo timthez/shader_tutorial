@@ -1,5 +1,5 @@
 #include "Program.h"
-
+// For Colored Output
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
@@ -13,6 +13,7 @@ Program::Program(){
   programID = glCreateProgram();
 }
 
+//Attach shader to program
 void Program::attachShader(Shader shader){
   char buff[255];  
   
@@ -25,6 +26,7 @@ void Program::attachShader(Shader shader){
 }
 
 bool Program::checkErrors(){
+  //Check for Link Errors
   GLint success;
   glGetProgramiv(programID, GL_LINK_STATUS, &success);
   
@@ -48,7 +50,7 @@ bool Program::checkErrors(){
   return false;
 }
 
-
+//Link Program to main Program
 void Program::link(){
   Logger::log(ANSI_COLOR_GREEN "--------------------------------------------------------------------------------");
   Logger::log("                              Linking Program           ");
@@ -58,14 +60,17 @@ void Program::link(){
     Logger::log("Linking Complete");
 }
 
+//Use the program
 void Program::use(){
   glUseProgram(programID);
 }
 
+//Dont use any programs
 void Program::resetProgram(){
   glUseProgram(0);  
 }
 
+//Print Active Attributes
 void Program::printActiveAttribs(){  
   
   GLint written, size, location, maxLength, nAttribs;
@@ -94,6 +99,7 @@ void Program::printActiveAttribs(){
   free(name);
 }
 
+//Print the Active Unifroms
 void Program::printActiveUniforms(){  
   
   GLint written, size, location, maxLength, nAttribs;
@@ -120,9 +126,6 @@ void Program::printActiveUniforms(){
   free(name);
 }
 
-void Program::bindAttribLocation(GLuint location, const char * name){
-  glBindAttribLocation(programID, location,name);
-}
 
 //Get Shader Datatype Names
 string Program::getTypeString(GLenum type){

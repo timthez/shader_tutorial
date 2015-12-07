@@ -12,6 +12,7 @@
 
 bool Logger::show = true;
 
+//Only logs if show is set to true
 void Logger::log(const char * str){
     if(show){
         printf(  "%s\n" ,str);

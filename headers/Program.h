@@ -1,13 +1,3 @@
-//
-//  Shader.hpp
-//  opengl-series
-//
-//  Created by Tim Zuercher on 11/21/15.
-//
-//
-
-
-
 #include <stdio.h>
 #include <string>
 #include "Shader.h"
@@ -26,7 +16,6 @@ public:
   void printActiveUniforms();
   static void resetProgram();
   GLuint getID(){return programID;};
-  void bindAttribLocation(GLuint location, const char * name);
 private: 
   bool checkErrors();
   static string getTypeString(GLenum type);

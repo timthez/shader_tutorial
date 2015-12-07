@@ -96,8 +96,8 @@ Shader::Shader(string file, GLenum type){
     this->shaderType = getShaderType(type);
     
     char buff[255];
-    snprintf(buff, sizeof(buff),"                             Creating %s                    ",  getShaderType(type).c_str());
     Logger::log(ANSI_COLOR_GREEN "################################################################################");
+    snprintf(buff, sizeof(buff),"                             Creating %s                    ",  getShaderType(type).c_str());
     Logger::log(buff);
     Logger::log("################################################################################" ANSI_COLOR_RESET);
     shaderID = glCreateShader(type);
