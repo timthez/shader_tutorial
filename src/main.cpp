@@ -36,6 +36,10 @@ static void Render() {
     glUniform1f(timerLoc, timer);    
     
     
+    //Create a screen size uniform
+    GLuint location = glGetUniformLocation(program->getID(),"screen");
+    glUniform2f(location,SCREEN_WIDTH, SCREEN_HEIGHT);
+    
     if(show3d){
       //Draw Cube 
       glDrawArrays(GL_TRIANGLES,0, 36);        
@@ -355,11 +359,6 @@ int main(int argc, char **argv)
     
     //start timer 
     timer = 0.0;
-    
-    
-    //Create a screen size uniform
-    GLuint location = glGetUniformLocation(program->getID(),"screen");
-    glUniform2f(location,SCREEN_WIDTH, SCREEN_HEIGHT);
     
     
     //Handle Key events
